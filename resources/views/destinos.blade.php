@@ -1,19 +1,46 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        @foreach($destinos as $destino)
-        <div class="col-md-4">
-            <div class="card">
-                <img class="card-img-top" src="{{ asset('images/'.$destino->imagen) }}" alt="{{ $destino->nombre }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $destino->nombre }}</h5>
-                    <a href="#" class="btn btn-primary">Ver Detalle</a>
-                </div>
-            </div>
+<head>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 1rem;
+            padding: 1rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .card:hover .details {
+            max-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        @foreach ($destinos as $destino)
+        <div class="card">
+            <h2>{{ $destino->nombre }}</h2>
         </div>
         @endforeach
     </div>
-</div>
-@endsection
+</body>
+
+</html>
